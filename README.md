@@ -14,10 +14,14 @@ Dự án này xây dựng một API sử dụng FastAPI để phân loại rư�
 - Open Telemetry 
 - Node Exporter
 
-
+![Architecture Diagram](.github/architect.png)
 
 ## Demo
 
+Chạy test request số lượng lớn concurrency
+```sh
+./test_request.sh
+```
 ## Pull Docker image from docker hub
 Docker hub: https://hub.docker.com/r/nhan0612/cs317/tags
 
