@@ -1,0 +1,51 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+        cors:
+          allowed_headers: ["*"]
+  prometheus:
+    config:
+      scrape_configs:
+        - job_name: node
+          scrape_interval: 30s
+          static_configs:
+            - targets: ["host.docker.internal:9100"]
+processors:
+  batch:
+
+exporters:
+  otlp/tempo:
+    endpoint: http://host.docker.internal:4300 # tempo host:port
+    tls:
+      insecure: true
+  otlphttp:
+    endpoint: http://host.docker.internal:3100/otlp # loki host:port
+  prometheusremotewrite:
+    endpoint: http://host.docker.internal:9090/api/v1/push # prometheus host:port
+  debug:
+    verbosity: detailed
+
+extensions:
+  health_check:
+  pprof:
+  zpages:
+
+service:
+  extensions: [health_check, pprof, zpages]
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlp/tempo]
+    logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlphttp]
+    metrics:
+      receivers: [otlp, prometheus]
+      processors: [batch]
+      exporters: [prometheusremotewrite]
