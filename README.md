@@ -18,6 +18,11 @@ Dự án này xây dựng một API sử dụng FastAPI để phân loại rư�
 
 ## Demo
 
+
+Uploading demo4.mov…
+
+
+
 Chạy test request số lượng lớn concurrency
 ```sh
 ./test_request.sh
