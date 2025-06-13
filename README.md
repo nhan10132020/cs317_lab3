@@ -19,7 +19,11 @@ Dự án này xây dựng một API sử dụng FastAPI để phân loại rư�
 ## Demo
 
 
-Uploading demo4.mov…
+https://github.com/user-attachments/assets/3b83282a-779b-44da-a35d-5de24d8cc0f2
+
+
+
+
 
 
 
